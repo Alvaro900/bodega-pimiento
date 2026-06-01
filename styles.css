@@ -1345,6 +1345,11 @@ a.contacto__dato:active {
         margin-left: 0;
     }
 
+    .mobile-menu__close {
+        top: 1rem;
+        right: 1.5rem;
+    }
+
     .hero {
         min-height: 100vh;
         min-height: 100dvh;
