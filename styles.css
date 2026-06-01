@@ -37,8 +37,8 @@
     --stone: #6b6056;
     --font-display: 'Playfair Display', Georgia, serif;
     --font-body: 'Karla', -apple-system, BlinkMacSystemFont, sans-serif;
-    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);     /* Emil Kowalski strong ease-out */
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1); /* Strong ease-in-out */
 }
 
 *, *::before, *::after {
