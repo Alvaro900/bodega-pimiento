@@ -249,8 +249,24 @@ document.addEventListener('DOMContentLoaded', function () {
             if (target) {
                 e.preventDefault();
                 var offset = nav ? nav.offsetHeight : 0;
-                var top = target.getBoundingClientRect().top + window.scrollY - offset;
-                window.scrollTo({ top: top, behavior: 'smooth' });
+                var targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+                var startPosition = window.scrollY;
+                var distance = targetPosition - startPosition;
+                var duration = 800;
+                var start = null;
+
+                function step(timestamp) {
+                    if (!start) start = timestamp;
+                    var progress = timestamp - start;
+                    var t = Math.min(progress / duration, 1);
+                    // easeInOutCubic
+                    var ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                    window.scrollTo(0, startPosition + distance * ease);
+                    if (progress < duration) {
+                        window.requestAnimationFrame(step);
+                    }
+                }
+                window.requestAnimationFrame(step);
             }
         });
     });
