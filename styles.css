@@ -432,7 +432,10 @@ a {
 }
 
 .frase--alt {
-    background: var(--bg-warm);
+    background-color: var(--bg-warm);
+    background-image: 
+        linear-gradient(to bottom, rgba(15, 12, 8, 0.75), rgba(15, 12, 8, 0.85)),
+        url('fondos/fondo%20copa.png?v=1');
 }
 
 .frase__container {
