@@ -357,9 +357,12 @@ a {
 
 .hero__scroll-hint {
     position: absolute;
-    bottom: -8rem;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
+    z-index: 3;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -368,12 +371,15 @@ a {
     font-size: 0.7rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    animation: scrollBounce 2s ease-in-out 3 forwards;
+    opacity: 0;
+    animation: 
+        heroFadeUp 800ms cubic-bezier(0.23, 1, 0.32, 1) 1200ms forwards,
+        scrollBounce 2s ease-in-out 2000ms infinite;
 }
 
 @keyframes scrollBounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(6px); }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
 }
 
 /* ============================================
@@ -1176,8 +1182,7 @@ a.contacto__dato:active {
 
 .hero__logo-wrapper,
 .hero__title,
-.hero__subtitle,
-.hero__scroll-hint {
+.hero__subtitle {
     opacity: 0;
     animation: heroFadeUp 800ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
@@ -1185,7 +1190,6 @@ a.contacto__dato:active {
 .hero__logo-wrapper { animation-delay: 200ms; }
 .hero__title        { animation-delay: 500ms; }
 .hero__subtitle     { animation-delay: 800ms; }
-.hero__scroll-hint  { animation-delay: 1200ms; }
 
 @keyframes heroFadeUp {
     from {
@@ -1326,7 +1330,7 @@ a.contacto__dato:active {
     }
 
     .hero__scroll-hint {
-        bottom: -6rem;
+        bottom: 1.5rem;
     }
 
     .frase {
