@@ -813,6 +813,28 @@ a {
     font-weight: 500;
     color: var(--cream);
     margin: 0;
+    position: relative;
+    display: inline-block;
+}
+
+.carta__plato-nombre::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--gold);
+    transform-origin: bottom right;
+    transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .carta__plato:hover .carta__plato-nombre::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
 }
 
 .carta__plato-nota {
