@@ -786,15 +786,9 @@ a {
 
 .carta__vinos-toggle {
     margin-top: 4rem;
-    padding: 4rem 1.5rem;
+    padding-top: 3rem;
     position: relative;
-    background-image: 
-        linear-gradient(to bottom, var(--bg-deep) 0%, rgba(10, 8, 6, 0.85) 15%, rgba(10, 8, 6, 0.85) 85%, var(--bg-deep) 100%),
-        radial-gradient(circle at center, transparent 0%, var(--bg-deep) 100%),
-        url('fondos/vino_fondo.png');
-    background-size: cover;
-    background-position: center;
-    border: none;
+    border-top: 1px solid rgba(201, 169, 110, 0.15);
 }
 
 .carta__vinos-summary {
@@ -808,7 +802,7 @@ a {
     text-transform: uppercase;
     color: var(--gold);
     padding: 0.8rem 2rem;
-    background-color: rgba(10, 8, 6, 0.6);
+    background-color: transparent;
     border: 1px solid var(--gold-dim);
     cursor: pointer;
     transition: background-color 200ms var(--ease-out), color 200ms var(--ease-out), border-color 200ms var(--ease-out), transform 160ms var(--ease-out);
