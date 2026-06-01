@@ -345,7 +345,7 @@ a {
     object-fit: cover;
     z-index: 0;
     opacity: 0;
-    animation: videoFadeIn 4.5s cubic-bezier(0.23, 1, 0.32, 1) 0.8s forwards;
+    animation: videoFadeIn 4.5s cubic-bezier(0.23, 1, 0.32, 1) 1.8s forwards;
 }
 
 @keyframes videoFadeIn {
@@ -1305,9 +1305,9 @@ a.contacto__dato:active {
     animation: heroFadeUp 800ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-.hero__logo-wrapper { animation-delay: 0ms; }
-.hero__title        { animation-delay: 300ms; }
-.hero__subtitle     { animation-delay: 600ms; }
+.hero__title        { animation-delay: 0ms; }
+.hero__subtitle     { animation-delay: 800ms; }
+.hero__logo-wrapper { animation-delay: 3500ms; }
 
 @keyframes heroFadeUp {
     from {
