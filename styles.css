@@ -1304,7 +1304,8 @@ a.contacto__dato:active {
     animation: heroFadeUp 800ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-.hero__logo-wrapper {
+.hero__logo-wrapper,
+.hero__scroll-hints {
     opacity: 0;
     animation: simpleFadeIn 1500ms ease-out forwards;
 }
@@ -1312,6 +1313,7 @@ a.contacto__dato:active {
 .hero__title        { animation-delay: 0ms; }
 .hero__subtitle     { animation-delay: 0ms; }
 .hero__logo-wrapper { animation-delay: 3500ms; }
+.hero__scroll-hints { animation-delay: 4500ms; }
 
 @keyframes heroFadeUp {
     from {
