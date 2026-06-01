@@ -22,19 +22,36 @@ document.addEventListener('DOMContentLoaded', function () {
         heroVideo.play().catch(function() {});
     }
 
-    // Nav scroll effect
+    // Nav & Noise scroll effect
     var nav = document.getElementById('nav');
+    var noise = document.querySelector('.noise-overlay');
     var lastScroll = 0;
 
     window.addEventListener('scroll', function () {
         var scrollY = window.scrollY;
+        
+        // Nav
         if (scrollY > 80) {
             nav.classList.add('nav--scrolled');
         } else {
             nav.classList.remove('nav--scrolled');
         }
+        
+        // Noise fade in (0 at top, 0.05 after 100vh)
+        if (noise) {
+            var vh = window.innerHeight;
+            if (scrollY < vh) {
+                noise.style.opacity = (scrollY / vh) * 0.05;
+            } else {
+                noise.style.opacity = 0.05;
+            }
+        }
+        
         lastScroll = scrollY;
     }, { passive: true });
+    
+    // Initialize state
+    window.dispatchEvent(new Event('scroll'));
 
     // Mobile menu toggle
     var toggle = document.getElementById('navToggle');
