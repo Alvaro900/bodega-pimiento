@@ -1310,7 +1310,7 @@ a.contacto__dato:active {
 }
 
 .hero__title        { animation-delay: 0ms; }
-.hero__subtitle     { animation-delay: 800ms; }
+.hero__subtitle     { animation-delay: 0ms; }
 .hero__logo-wrapper { animation-delay: 3500ms; }
 
 @keyframes heroFadeUp {
