@@ -1,14 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
     
-    // Initialize Lenis Smooth Scroll
+    // Initialize Lenis Smooth Scroll (only for desktop/mouse users)
     var lenis;
-    if (typeof Lenis !== 'undefined') {
+    if (typeof Lenis !== 'undefined' && window.matchMedia('(pointer: fine)').matches) {
         lenis = new Lenis({
             duration: 1.2,
             smoothWheel: true,
-            wheelMultiplier: 1,
-            syncTouch: true,
-            touchMultiplier: 2
+            wheelMultiplier: 1
         });
 
         function raf(time) {
