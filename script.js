@@ -281,4 +281,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Magnetic Elements
+    var magnetics = document.querySelectorAll('.magnetic');
+    
+    magnetics.forEach(function(magnetic) {
+        magnetic.addEventListener('mousemove', function(e) {
+            var rect = magnetic.getBoundingClientRect();
+            var x = (e.clientX - rect.left - (rect.width / 2)) * 0.4;
+            var y = (e.clientY - rect.top - (rect.height / 2)) * 0.4;
+            
+            magnetic.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+            magnetic.style.transition = 'transform 0.1s linear';
+        });
+        
+        magnetic.addEventListener('mouseleave', function() {
+            magnetic.style.transform = 'translate(0px, 0px)';
+            magnetic.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        });
+    });
+
 });
