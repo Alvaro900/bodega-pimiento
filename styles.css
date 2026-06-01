@@ -380,7 +380,11 @@ a {
     cursor: pointer;
     opacity: 0;
     animation: heroFadeUp 800ms cubic-bezier(0.23, 1, 0.32, 1) 1200ms forwards;
-    transition: color 200ms var(--ease-out);
+    transition: color 200ms var(--ease-out), transform 150ms var(--ease-out);
+}
+
+.hero__scroll-hint:active {
+    transform: scale(0.95);
 }
 
 @media (hover: hover) and (pointer: fine) {
