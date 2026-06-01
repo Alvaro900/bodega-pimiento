@@ -345,7 +345,7 @@ a {
     object-fit: cover;
     z-index: 0;
     opacity: 0;
-    animation: videoFadeIn 4.5s cubic-bezier(0.23, 1, 0.32, 1) 1.8s forwards;
+    animation: videoFadeIn 4.5s cubic-bezier(0.23, 1, 0.32, 1) 0.8s forwards;
 }
 
 @keyframes videoFadeIn {
