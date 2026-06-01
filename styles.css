@@ -639,8 +639,26 @@ a {
     text-align: left;
     padding: 2.5rem 2rem;
     border: 1px solid rgba(201, 169, 110, 0.12);
-    background: rgba(26, 20, 16, 0.5);
+    background-color: var(--bg-dark); /* Fallback */
     transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out);
+}
+
+.sarmiento__card--vid {
+    background-image: linear-gradient(to bottom, rgba(26, 20, 16, 0.8), rgba(26, 20, 16, 0.9)), url('fondos/fondo-vid.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.sarmiento__card--fuego {
+    background-image: linear-gradient(to bottom, rgba(26, 20, 16, 0.8), rgba(26, 20, 16, 0.9)), url('fondos/fondo-fuego.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.sarmiento__card--mano {
+    background-image: linear-gradient(to bottom, rgba(26, 20, 16, 0.8), rgba(26, 20, 16, 0.9)), url('fondos/fondo-brasa.png');
+    background-size: cover;
+    background-position: center;
 }
 
 @media (hover: hover) and (pointer: fine) {
