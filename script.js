@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
             autoRaf: true,
             duration: 1.2,
             smoothWheel: true,
-            wheelMultiplier: 1
+            wheelMultiplier: 1,
+            syncTouch: true,
+            touchMultiplier: 2
         });
     }
 
