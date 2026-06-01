@@ -423,7 +423,7 @@ a {
     background-color: var(--bg-dark);
     background-image: 
         linear-gradient(to bottom, rgba(15, 12, 8, 0.75), rgba(15, 12, 8, 0.85)),
-        url('fondos/fondo-generado.png?v=4');
+        url('fondos/fondo-generado.png');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -435,7 +435,7 @@ a {
     background-color: var(--bg-warm);
     background-image: 
         linear-gradient(to bottom, rgba(15, 12, 8, 0.75), rgba(15, 12, 8, 0.85)),
-        url('fondos/fondo-copa.png?v=4');
+        url('fondos/fondo-copa.png');
 }
 
 .frase__container {
