@@ -1332,6 +1332,32 @@ a.contacto__dato:active {
 
 
 /* ============================================
+   TEXT MASKING REVEAL (Alta cocina effect)
+   ============================================ */
+
+.mask-text.reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+.mask-text .word-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.mask-text .word {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.mask-text.visible .word {
+    transform: translateY(0);
+}
+
+/* ============================================
    FRASE — line-by-line reveal
    ============================================ */
 

@@ -61,6 +61,28 @@ document.addEventListener('DOMContentLoaded', function () {
         '.contacto__info, .contacto__mapa, ' +
         '.frase__text'
     );
+    
+    // Text Masking Reveal (Alta Cocina Effect)
+    var maskTargets = document.querySelectorAll('.nosotros__desc, .nosotros__cita, .sarmiento__intro, .bodega__desc');
+    maskTargets.forEach(function(el) {
+        var words = el.textContent.trim().split(/\s+/);
+        el.innerHTML = '';
+        el.classList.add('mask-text');
+        
+        words.forEach(function(word, i) {
+            var wrapper = document.createElement('span');
+            wrapper.className = 'word-wrapper';
+            
+            var inner = document.createElement('span');
+            inner.className = 'word';
+            inner.textContent = word;
+            inner.style.transitionDelay = (i * 12) + 'ms';
+            
+            wrapper.appendChild(inner);
+            el.appendChild(wrapper);
+            el.appendChild(document.createTextNode(' '));
+        });
+    });
 
     reveals.forEach(function (el) {
         el.classList.add('reveal');
