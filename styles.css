@@ -1184,8 +1184,8 @@ a.contacto__dato:active {
 
 .reveal {
     opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+    transform: translateY(20px);
+    transition: opacity 800ms ease-out, transform 800ms ease-out;
 }
 
 .reveal.visible {
