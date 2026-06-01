@@ -248,6 +248,29 @@ a {
     pointer-events: all;
 }
 
+.mobile-menu__close {
+    position: absolute;
+    top: 2.2rem;
+    right: 2.5rem;
+    background: none;
+    border: none;
+    color: var(--cream);
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 10;
+    transition: transform 200ms var(--ease-out), color 200ms var(--ease-out);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .mobile-menu__close:hover {
+        color: var(--gold);
+        transform: scale(1.1);
+    }
+}
+
 .mobile-menu__inner {
     text-align: center;
 }

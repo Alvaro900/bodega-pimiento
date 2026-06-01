@@ -31,6 +31,16 @@ document.addEventListener('DOMContentLoaded', function () {
         toggle.setAttribute('aria-label', isOpen ? 'Cerrar menu' : 'Abrir menu');
     });
 
+    var closeBtn = document.getElementById('mobileMenuClose');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            menu.classList.remove('mobile-menu--open');
+            toggle.classList.remove('nav__toggle--open');
+            document.body.style.overflow = '';
+            toggle.setAttribute('aria-label', 'Abrir menu');
+        });
+    }
+
     // Close mobile menu on link click
     var menuLinks = menu.querySelectorAll('.mobile-menu__link');
     menuLinks.forEach(function (link) {
