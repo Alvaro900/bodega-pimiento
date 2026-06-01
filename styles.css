@@ -37,6 +37,8 @@
     --stone: #6b6056;
     --font-display: 'Playfair Display', Georgia, serif;
     --font-body: 'Karla', -apple-system, BlinkMacSystemFont, sans-serif;
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 *, *::before, *::after {
@@ -110,7 +112,7 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: 1.25rem 3rem;
-    transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
+    transition: background-color 300ms var(--ease-out), backdrop-filter 300ms var(--ease-out);
 }
 
 .nav--scrolled {
@@ -143,7 +145,7 @@ a {
     height: 36px;
     width: auto;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 300ms var(--ease-out);
     filter: brightness(1.3) saturate(1.4) drop-shadow(0 0 6px rgba(139, 58, 42, 0.4));
 }
 
@@ -163,11 +165,13 @@ a {
     font-size: 0.8rem;
     letter-spacing: 0.1em;
     color: var(--cream-mid);
-    transition: color 0.3s ease;
+    transition: color 200ms var(--ease-out);
 }
 
-.nav__phone:hover {
-    color: var(--cream);
+@media (hover: hover) and (pointer: fine) {
+    .nav__phone:hover {
+        color: var(--cream);
+    }
 }
 
 .nav__reserva {
@@ -177,13 +181,19 @@ a {
     color: var(--gold);
     padding: 0.6rem 1.5rem;
     border: 1px solid var(--gold-dim);
-    transition: all 0.3s ease;
+    transition: background-color 200ms var(--ease-out), color 200ms var(--ease-out), border-color 200ms var(--ease-out), transform 160ms var(--ease-out);
 }
 
-.nav__reserva:hover {
-    background-color: var(--gold);
-    color: var(--bg-deep);
-    border-color: var(--gold);
+.nav__reserva:active {
+    transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .nav__reserva:hover {
+        background-color: var(--gold);
+        color: var(--bg-deep);
+        border-color: var(--gold);
+    }
 }
 
 .nav__toggle {
@@ -202,7 +212,7 @@ a {
     width: 24px;
     height: 1.5px;
     background: var(--cream);
-    transition: all 0.3s ease;
+    transition: transform 200ms var(--ease-out);
 }
 
 .nav__toggle--open span:first-child {
@@ -226,12 +236,14 @@ a {
     align-items: center;
     justify-content: center;
     opacity: 0;
+    transform: scale(0.98);
     pointer-events: none;
-    transition: opacity 0.4s ease;
+    transition: opacity 250ms var(--ease-out), transform 250ms var(--ease-out);
 }
 
 .mobile-menu--open {
     opacity: 1;
+    transform: scale(1);
     pointer-events: all;
 }
 
@@ -245,11 +257,17 @@ a {
     font-size: 2rem;
     color: var(--cream);
     margin-bottom: 1.5rem;
-    transition: color 0.3s ease;
+    transition: color 200ms var(--ease-out), transform 160ms var(--ease-out);
 }
 
-.mobile-menu__link:hover {
-    color: var(--gold);
+.mobile-menu__link:active {
+    transform: scale(0.98);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .mobile-menu__link:hover {
+        color: var(--gold);
+    }
 }
 
 .mobile-menu__contact {
@@ -350,7 +368,7 @@ a {
     font-size: 0.7rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    animation: scrollBounce 2s ease-in-out infinite;
+    animation: scrollBounce 2s ease-in-out 3 forwards;
 }
 
 @keyframes scrollBounce {
@@ -363,6 +381,8 @@ a {
    ============================================ */
 
 .frase {
+    position: relative;
+    overflow: hidden;
     padding: 6rem 2rem;
     background: var(--bg-dark);
     border-top: 1px solid rgba(201, 169, 110, 0.1);
@@ -575,11 +595,14 @@ a {
     padding: 2.5rem 2rem;
     border: 1px solid rgba(201, 169, 110, 0.12);
     background: rgba(26, 20, 16, 0.5);
-    transition: border-color 0.3s ease;
+    transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out);
 }
 
-.sarmiento__card:hover {
-    border-color: rgba(201, 169, 110, 0.3);
+@media (hover: hover) and (pointer: fine) {
+    .sarmiento__card:hover {
+        border-color: rgba(201, 169, 110, 0.3);
+        transform: translateY(-2px);
+    }
 }
 
 .sarmiento__card-number {
@@ -671,7 +694,15 @@ a {
     left: 0;
     right: 0;
     height: 1px;
+    overflow: hidden;
     background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.2), transparent);
+    transition: background 400ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .carta__plato:hover .carta__plato-line {
+        background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.45), transparent);
+    }
 }
 
 .carta__categoria {
@@ -767,10 +798,14 @@ a {
     background-color: rgba(10, 8, 6, 0.6);
     border: 1px solid var(--gold-dim);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 200ms var(--ease-out), color 200ms var(--ease-out), border-color 200ms var(--ease-out), transform 160ms var(--ease-out);
     list-style: none;
     width: fit-content;
     margin: 0 auto;
+}
+
+.carta__vinos-summary:active {
+    transform: scale(0.97);
 }
 
 .carta__vinos-summary::-webkit-details-marker {
@@ -788,10 +823,12 @@ a {
     content: '−';
 }
 
-.carta__vinos-summary:hover {
-    background-color: rgba(139, 58, 42, 0.8); /* Terracotta / garnet */
-    color: var(--cream);
-    border-color: rgba(139, 58, 42, 1);
+@media (hover: hover) and (pointer: fine) {
+    .carta__vinos-summary:hover {
+        background-color: rgba(139, 58, 42, 0.8);
+        color: var(--cream);
+        border-color: rgba(139, 58, 42, 1);
+    }
 }
 
 .carta__vinos {
@@ -828,6 +865,13 @@ a {
     height: 100%;
     object-fit: cover;
     filter: grayscale(100%);
+    transition: filter 600ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .bodega__image-frame:hover .bodega__image {
+        filter: grayscale(30%);
+    }
 }
 
 .bodega__image-placeholder {
@@ -945,7 +989,7 @@ a {
     color: var(--cream-mid);
     font-size: 0.9rem;
     font-weight: 300;
-    transition: color 0.3s ease;
+    transition: color 200ms var(--ease-out);
 }
 
 .contacto__dato svg {
@@ -954,12 +998,18 @@ a {
     color: var(--gold-dim);
 }
 
-a.contacto__dato:hover {
-    color: var(--gold);
+@media (hover: hover) and (pointer: fine) {
+    a.contacto__dato:hover {
+        color: var(--gold);
+    }
+
+    a.contacto__dato:hover svg {
+        color: var(--gold);
+    }
 }
 
-a.contacto__dato:hover svg {
-    color: var(--gold);
+a.contacto__dato:active {
+    transform: scale(0.98);
 }
 
 .contacto__dato--phone span {
@@ -1014,9 +1064,11 @@ a.contacto__dato:hover svg {
     cursor: pointer;
 }
 
-.contacto__mapa-link:hover {
-    border-color: var(--gold);
-    color: var(--gold);
+@media (hover: hover) and (pointer: fine) {
+    .contacto__mapa-link:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+    }
 }
 
 /* ============================================
@@ -1090,9 +1142,8 @@ a.contacto__dato:hover svg {
 .ash {
     position: absolute;
     bottom: -5vh;
-    background-color: #ffb732; /* Bright ember color */
-    box-shadow: 0 0 6px #ff7b00, 0 0 12px #ff4500;
     opacity: 0;
+    will-change: transform, opacity;
 }
 
 
@@ -1103,8 +1154,8 @@ a.contacto__dato:hover svg {
 
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(12px);
+    transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
 }
 
 .reveal.visible {
@@ -1112,9 +1163,144 @@ a.contacto__dato:hover svg {
     transform: translateY(0);
 }
 
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-1 { transition-delay: 50ms; }
+.reveal-delay-2 { transition-delay: 100ms; }
+.reveal-delay-3 { transition-delay: 150ms; }
+.reveal-delay-4 { transition-delay: 200ms; }
+.reveal-delay-5 { transition-delay: 250ms; }
+.reveal-delay-6 { transition-delay: 300ms; }
+
+/* ============================================
+   HERO STAGGER ENTRANCE
+   ============================================ */
+
+.hero__logo-wrapper,
+.hero__title,
+.hero__subtitle,
+.hero__scroll-hint {
+    opacity: 0;
+    animation: heroFadeUp 800ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.hero__logo-wrapper { animation-delay: 200ms; }
+.hero__title        { animation-delay: 500ms; }
+.hero__subtitle     { animation-delay: 800ms; }
+.hero__scroll-hint  { animation-delay: 1200ms; }
+
+@keyframes heroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   SHIMMER — golden light on separator lines
+   ============================================ */
+
+.carta__plato-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.25), transparent);
+    animation: shimmer 6s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+    animation-delay: calc(var(--shimmer-delay, 0) * 1s);
+}
+
+@keyframes shimmer {
+    0%, 100% { left: -100%; }
+    40%      { left: 200%; }
+    41%, 99% { left: 200%; }
+}
+
+/* ============================================
+   INSIGNIA PULSE — chuletillas tag glow
+   ============================================ */
+
+.carta__plato-tag {
+    animation: insigniaPulse 3s ease-in-out 3 both;
+}
+
+@keyframes insigniaPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(139, 58, 42, 0);
+    }
+    50% {
+        box-shadow: 0 0 12px 2px rgba(139, 58, 42, 0.35);
+    }
+}
+
+/* ============================================
+   FILM GRAIN — subtle texture overlay
+   ============================================ */
+
+.hero::after,
+.frase::after,
+.sarmiento::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px;
+    animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10%  { transform: translate(-5%, -10%); }
+    20%  { transform: translate(-15%, 5%); }
+    30%  { transform: translate(7%, -15%); }
+    40%  { transform: translate(-5%, 15%); }
+    50%  { transform: translate(-15%, 10%); }
+    60%  { transform: translate(15%, 0%); }
+    70%  { transform: translate(0%, 10%); }
+    80%  { transform: translate(3%, -15%); }
+    90%  { transform: translate(-10%, 10%); }
+}
+
+/* ============================================
+   FRASE — line-by-line reveal
+   ============================================ */
+
+.frase__text .frase-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+}
+
+.frase__text.visible .frase-line {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.frase__text.visible .frase-line:nth-child(1) { transition-delay: 0ms; }
+.frase__text.visible .frase-line:nth-child(2) { transition-delay: 200ms; }
+.frase__text.visible .frase-line:nth-child(3) { transition-delay: 400ms; }
+
+/* ============================================
+   SARMIENTO CARD NUMBER — count-up clip reveal
+   ============================================ */
+
+.sarmiento__card-number {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 500ms var(--ease-out);
+}
+
+.sarmiento__card.visible .sarmiento__card-number {
+    clip-path: inset(0 0 0 0);
+}
 
 /* ============================================
    RESPONSIVE
@@ -1236,13 +1422,37 @@ a.contacto__dato:hover svg {
         scroll-behavior: auto;
     }
 
-    .hero__scroll-hint {
+    .hero__scroll-hint,
+    .hero__logo-wrapper,
+    .hero__title,
+    .hero__subtitle {
+        animation: none;
+        opacity: 1;
+    }
+
+    .reveal,
+    .frase__text .frase-line {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .carta__plato-line::after {
         animation: none;
     }
 
-    .reveal {
-        opacity: 1;
-        transform: none;
+    .carta__plato-tag {
+        animation: none;
+    }
+
+    .hero::after,
+    .frase::after,
+    .sarmiento::after {
+        animation: none;
+    }
+
+    .sarmiento__card-number {
+        clip-path: none;
         transition: none;
     }
 

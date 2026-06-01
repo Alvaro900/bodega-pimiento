@@ -52,13 +52,41 @@ document.addEventListener('DOMContentLoaded', function () {
         '.frase__text'
     );
 
-    reveals.forEach(function (el, index) {
+    reveals.forEach(function (el) {
         el.classList.add('reveal');
-        // Add staggered delays for grid items
-        if (el.classList.contains('carta__plato') || el.classList.contains('sarmiento__card')) {
-            // cycle through delay 1, 2, 3
-            var delayClass = 'reveal-delay-' + ((index % 3) + 1);
-            el.classList.add(delayClass);
+    });
+
+    // Sequential stagger within each parent section
+    var staggerGroups = [
+        '.sarmiento__grid .sarmiento__card',
+        '.carta__grid .carta__plato',
+        '.bodega__espacios .bodega__espacio'
+    ];
+    staggerGroups.forEach(function (selector) {
+        var items = document.querySelectorAll(selector);
+        items.forEach(function (item, i) {
+            var delayIndex = Math.min(i + 1, 6);
+            item.classList.add('reveal-delay-' + delayIndex);
+        });
+    });
+
+    // Frase line-by-line: wrap <br>-separated lines in spans
+    document.querySelectorAll('.frase__text').forEach(function (quote) {
+        var html = quote.innerHTML;
+        // Split on <br> tags, wrap each part in a frase-line span
+        var parts = html.split(/<br\s*\/?>/i);
+        if (parts.length > 1) {
+            quote.innerHTML = parts.map(function (part) {
+                return '<span class="frase-line">' + part.trim() + '</span>';
+            }).join('');
+        }
+    });
+
+    // Shimmer delay: stagger the shimmer per plato line
+    document.querySelectorAll('.carta__plato').forEach(function (plato, i) {
+        var line = plato.querySelector('.carta__plato-line');
+        if (line) {
+            line.style.setProperty('--shimmer-delay', String(i * 0.8));
         }
     });
 
@@ -78,86 +106,140 @@ document.addEventListener('DOMContentLoaded', function () {
         revealObserver.observe(el);
     });
 
-    // Ashes effect
+    // Ember & smoke simulation
     var ashContainer = document.getElementById('ash-container');
     if (ashContainer) {
-        function createAsh() {
-            var ash = document.createElement('div');
-            ash.classList.add('ash');
-            
-            // Core randomization
-            var isDeadAsh = Math.random() > 0.6; // 40% chance to be a dark dead ash
-            var size = Math.random() * 6 + 3; // 3px to 9px
-            var left = Math.random() * 100; // 0% to 100%
-            var duration = Math.random() * 4000 + (isDeadAsh ? 8000 : 4000); // Dead ashes fall/rise slower (up to 12s)
-            var maxOpacity = Math.random() * 0.5 + (isDeadAsh ? 0.2 : 0.5); // Dead ashes are less opaque
-            
-            // Depth of field (blur)
-            var blurAmount = Math.random() > 0.7 ? (Math.random() * 3 + 1) : 0; // 30% chance to be out of focus
-            
-            // Visual styles
-            if (isDeadAsh) {
-                ash.style.backgroundColor = '#1a1816'; // Dark grey/brown
-                ash.style.boxShadow = 'none';
+        var emberShapes = [
+            'polygon(20% 0%, 80% 10%, 100% 50%, 70% 90%, 10% 80%)',
+            'polygon(0% 20%, 60% 0%, 100% 40%, 80% 100%, 20% 80%)',
+            'polygon(30% 0%, 100% 20%, 80% 80%, 20% 100%, 0% 50%)',
+            'polygon(10% 10%, 90% 0%, 100% 80%, 50% 100%, 0% 60%)'
+        ];
+
+        function createParticle(isSmoke) {
+            var el = document.createElement('div');
+            el.classList.add('ash');
+
+            // Power-law size: mostly tiny embers, rare large ones
+            var size = isSmoke
+                ? Math.random() * 14 + 6
+                : Math.pow(Math.random(), 2.5) * 7 + 1.5;
+
+            var left = Math.random() * 100;
+            var duration = isSmoke
+                ? Math.random() * 5000 + 10000
+                : Math.random() * 4000 + 5000;
+            var maxOpacity = isSmoke
+                ? Math.random() * 0.07 + 0.02
+                : Math.random() * 0.55 + 0.4;
+
+            // Depth of field
+            var blur = isSmoke
+                ? Math.random() * 4 + 2
+                : (Math.random() > 0.7 ? Math.random() * 2.5 + 0.5 : 0);
+
+            el.style.width = size + 'px';
+            el.style.height = (size * (Math.random() * 0.4 + 0.7)) + 'px';
+            el.style.left = left + 'vw';
+
+            if (isSmoke) {
+                el.style.borderRadius = '50%';
             } else {
-                var colors = ['#ffb732', '#ff7b00', '#ff4500'];
-                var color = colors[Math.floor(Math.random() * colors.length)];
-                ash.style.backgroundColor = color;
-                ash.style.boxShadow = '0 0 ' + (size*1.5) + 'px ' + color + ', 0 0 ' + (size*3) + 'px #ff4500';
+                el.style.clipPath = emberShapes[Math.floor(Math.random() * emberShapes.length)];
             }
-            
-            // Irregular shapes for realistic embers
-            var shapes = [
-                'polygon(20% 0%, 80% 10%, 100% 50%, 70% 90%, 10% 80%)',
-                'polygon(0% 20%, 60% 0%, 100% 40%, 80% 100%, 20% 80%)',
-                'polygon(30% 0%, 100% 20%, 80% 80%, 20% 100%, 0% 50%)',
-                'polygon(10% 10%, 90% 0%, 100% 80%, 50% 100%, 0% 60%)'
-            ];
-            
-            ash.style.width = size + 'px';
-            ash.style.height = (size * (Math.random() * 0.5 + 0.8)) + 'px'; // slightly oblong
-            ash.style.left = left + 'vw';
-            ash.style.clipPath = shapes[Math.floor(Math.random() * shapes.length)];
-            if (blurAmount > 0) ash.style.filter = 'blur(' + blurAmount + 'px)';
-            
-            // Drift left or right, and rotation
-            var driftStart = (Math.random() * 10 - 5);
-            var driftMid = driftStart + (Math.random() * 30 - 15);
-            var driftEnd = driftMid + (Math.random() * 40 - 20);
-            var rotStart = Math.random() * 360;
-            var rotEnd = rotStart + (Math.random() * 720 - 360);
-            
-            ashContainer.appendChild(ash);
-            
-            // Web Animations API with flickering and rotation
-            var animation = ash.animate([
-                { transform: 'translateY(0) translateX(0) scale(0.5) rotate(' + rotStart + 'deg)', opacity: 0, offset: 0 },
-                { transform: 'translateY(-20vh) translateX(' + driftStart + 'vw) scale(1) rotate(' + (rotStart + rotEnd)*0.2 + 'deg)', opacity: maxOpacity, offset: 0.2 },
-                { transform: 'translateY(-50vh) translateX(' + driftMid + 'vw) scale(0.8) rotate(' + (rotStart + rotEnd)*0.5 + 'deg)', opacity: maxOpacity * (isDeadAsh ? 1 : 0.3), offset: 0.5 }, // Only bright embers flicker
-                { transform: 'translateY(-80vh) translateX(' + driftEnd + 'vw) scale(1.1) rotate(' + (rotStart + rotEnd)*0.8 + 'deg)', opacity: maxOpacity, offset: 0.8 },
-                { transform: 'translateY(-110vh) translateX(' + (driftEnd * 1.5) + 'vw) scale(0.2) rotate(' + rotEnd + 'deg)', opacity: 0, offset: 1 }
-            ], {
+            if (blur > 0) el.style.filter = 'blur(' + blur + 'px)';
+
+            // Sinusoidal drift — 5 waypoints for wavy movement
+            var w1 = Math.random() * 6 - 3;
+            var w2 = w1 - (Math.random() * 8 - 4);
+            var w3 = w2 + (Math.random() * 10 - 5);
+            var w4 = w3 - (Math.random() * 7 - 3.5);
+            var w5 = w4 + (Math.random() * 6 - 3);
+
+            var rotA = Math.random() * 360;
+            var rotB = rotA + (Math.random() * 540 - 270);
+
+            ashContainer.appendChild(el);
+
+            var glowBase = Math.min(size * 2, 12);
+            var keyframes;
+
+            if (isSmoke) {
+                keyframes = [
+                    { transform: 'translateY(0) translateX(0) scale(0.3)', opacity: 0, backgroundColor: '#2a2520', offset: 0 },
+                    { transform: 'translateY(-12vh) translateX(' + w1 + 'vw) scale(0.6)', opacity: maxOpacity * 0.5, backgroundColor: '#221e1a', offset: 0.12 },
+                    { transform: 'translateY(-30vh) translateX(' + w2 + 'vw) scale(1)', opacity: maxOpacity, backgroundColor: '#1a1816', offset: 0.3 },
+                    { transform: 'translateY(-50vh) translateX(' + w3 + 'vw) scale(1.4)', opacity: maxOpacity * 0.7, backgroundColor: '#151311', offset: 0.55 },
+                    { transform: 'translateY(-75vh) translateX(' + w4 + 'vw) scale(1.7)', opacity: maxOpacity * 0.3, backgroundColor: '#111', offset: 0.8 },
+                    { transform: 'translateY(-105vh) translateX(' + w5 + 'vw) scale(2)', opacity: 0, backgroundColor: '#0f0c08', offset: 1 }
+                ];
+            } else {
+                // Thermal lifecycle: white-hot → yellow → orange → red → dark ash
+                keyframes = [
+                    { transform: 'translateY(0) translateX(0) scale(0.3) rotate(' + rotA + 'deg)',
+                      opacity: 0, backgroundColor: '#ffe8b0',
+                      boxShadow: '0 0 ' + glowBase + 'px #ffcc66, 0 0 ' + (glowBase * 2) + 'px #ff9900', offset: 0 },
+                    { transform: 'translateY(-8vh) translateX(' + w1 + 'vw) scale(1) rotate(' + (rotA + rotB * 0.1) + 'deg)',
+                      opacity: maxOpacity, backgroundColor: '#ffb732',
+                      boxShadow: '0 0 ' + glowBase + 'px #ff8800, 0 0 ' + (glowBase * 1.5) + 'px #ff5500', offset: 0.1 },
+                    { transform: 'translateY(-22vh) translateX(' + w2 + 'vw) scale(0.85) rotate(' + (rotA + rotB * 0.25) + 'deg)',
+                      opacity: maxOpacity * 0.75, backgroundColor: '#ff7b00',
+                      boxShadow: '0 0 ' + (glowBase * 0.7) + 'px #ff4500', offset: 0.25 },
+                    { transform: 'translateY(-40vh) translateX(' + w3 + 'vw) scale(0.65) rotate(' + (rotA + rotB * 0.5) + 'deg)',
+                      opacity: maxOpacity * 0.45, backgroundColor: '#cc3a00',
+                      boxShadow: '0 0 ' + (glowBase * 0.3) + 'px #8b2500', offset: 0.5 },
+                    { transform: 'translateY(-65vh) translateX(' + w4 + 'vw) scale(0.45) rotate(' + (rotA + rotB * 0.8) + 'deg)',
+                      opacity: maxOpacity * 0.2, backgroundColor: '#4a2a1a',
+                      boxShadow: '0 0 1px #2a1a0a', offset: 0.8 },
+                    { transform: 'translateY(-95vh) translateX(' + w5 + 'vw) scale(0.2) rotate(' + rotB + 'deg)',
+                      opacity: 0, backgroundColor: '#1a1816',
+                      boxShadow: 'none', offset: 1 }
+                ];
+            }
+
+            var anim = el.animate(keyframes, {
                 duration: duration,
-                easing: 'ease-in-out',
+                easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
                 fill: 'forwards'
             });
-            
-            // Remove ash after animation completes
-            animation.onfinish = function() {
-                if (ash.parentNode) {
-                    ash.parentNode.removeChild(ash);
-                }
+
+            anim.onfinish = function () {
+                if (el.parentNode) el.parentNode.removeChild(el);
             };
         }
 
-        // Spawn ashes periodically
-        // Fewer ashes to keep it elegant, not overwhelming
-        setInterval(createAsh, 800);
-        
-        // Spawn a few initial ashes so it's not empty on load
-        for (var i = 0; i < 5; i++) {
-            setTimeout(createAsh, Math.random() * 2000);
+        // Micro-burst: sarmiento cracking, 2-4 embers at once
+        function burst() {
+            var count = Math.floor(Math.random() * 3) + 2;
+            for (var i = 0; i < count; i++) {
+                (function (delay) {
+                    setTimeout(function () { createParticle(false); }, delay);
+                })(Math.random() * 150);
+            }
         }
+
+        // Main loop: mix of embers (65%) and smoke (35%)
+        setInterval(function () {
+            createParticle(Math.random() < 0.35);
+        }, 1200);
+
+        // Bursts on a random recurring timer
+        function scheduleBurst() {
+            var delay = Math.random() * 5000 + 5000;
+            setTimeout(function () {
+                burst();
+                scheduleBurst();
+            }, delay);
+        }
+        scheduleBurst();
+
+        // Initial population
+        for (var i = 0; i < 4; i++) {
+            (function (d) {
+                setTimeout(function () { createParticle(false); }, d);
+            })(Math.random() * 1500);
+        }
+        setTimeout(function () { createParticle(true); }, 600);
     }
 
     // Smooth scroll for nav links
