@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bodega Pimiento — Asador en Tirgo, La Rioja Alta</title>
+    <meta name="description" content="Asador tradicional riojano en una bodega del siglo XVIII. Chuletillas al sarmiento, cordero lechal y cocina a la brasa en Tirgo, La Rioja Alta.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- CONTENEDOR DE CENIZAS -->
+    <div id="ash-container"></div>
+
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav__left">
+            <span class="nav__location">Tirgo, La Rioja Alta</span>
+        </div>
+        <div class="nav__center">
+            <a href="#inicio" class="nav__logo-link">
+                <img src="logo.png" alt="Bodega Pimiento" class="nav__logo">
+            </a>
+        </div>
+        <div class="nav__right">
+            <a href="tel:+34941301777" class="nav__phone">941 301 777</a>
+            <a href="#reservar" class="nav__reserva">Reservar</a>
+        </div>
+        <button class="nav__toggle" aria-label="Abrir menú" id="navToggle">
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu__inner">
+            <a href="#nosotros" class="mobile-menu__link">Nosotros</a>
+            <a href="#sarmiento" class="mobile-menu__link">El sarmiento</a>
+            <a href="#carta" class="mobile-menu__link">La carta</a>
+            <a href="#bodega" class="mobile-menu__link">La bodega</a>
+            <a href="#reservar" class="mobile-menu__link">Reservar</a>
+            <div class="mobile-menu__contact">
+                <a href="tel:+34941301777">941 301 777</a>
+                <span>Calle Salvador, 8 — Tirgo</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <video class="hero__video" autoplay muted loop playsinline preload="auto">
+            <source src="fondos/fuego1.mp4" type="video/mp4">
+        </video>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <div class="hero__logo-wrapper">
+                <img src="logo.png" alt="Bodega Pimiento" class="hero__logo">
+            </div>
+            <h1 class="hero__title">Bodega<br>Pimiento</h1>
+            <p class="hero__subtitle">Asador en Tirgo desde hace décadas.<br>Bodega del siglo XVIII. Brasa de sarmiento.</p>
+            <div class="hero__scroll-hint">
+                <span>Descubre</span>
+                <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+                    <path d="M8 2L8 22M8 22L14 16M8 22L2 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- FRASE -->
+    <section class="frase">
+        <div class="frase__container">
+            <blockquote class="frase__text">
+                Aquí no se viene a probar cosas nuevas.<br>
+                <em>Se viene a lo de siempre.</em>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- NOSOTROS -->
+    <section class="nosotros" id="nosotros">
+        <div class="nosotros__container">
+            <div class="nosotros__text">
+                <span class="section-label">La familia</span>
+                <h2 class="nosotros__title">Tirgo, Mar<br>y Pablo</h2>
+                <p class="nosotros__desc">
+                    En el corazón de La Rioja Alta se encuentra Tirgo, un pueblo de apenas 170 habitantes a orillas del río Tirón. Su nombre viene de los autrigones, un pueblo celtíbero que se asentó aquí hace siglos. Hoy quedan sus casonas de piedra de los siglos XVII, XVIII y, sobre todo, viñedos hasta donde alcanza la vista.
+                </p>
+                <p class="nosotros__desc">
+                    Aquí, en Tirgo nació la familia Porres, donde Antonio Porres fue apodado desde niño como «pimiento», y ese mismo nombre acabó bautizando a la bodega que fundaría junto a su familia. No hubo un concepto de negocio sofisticado ni un plan de expansión. Fue una familia que sabía cocinar a la brasa y abrió sus puertas.
+                </p>
+                <p class="nosotros__desc">
+                    Hoy, más de cincuenta años después, sus hijos siguen la tradición. Pablo se ocupa de la lumbre, de controlar el asado de las carnes y las verduras con el oficio de quien lleva toda la vida junto al fuego. Mar dirige la sala con carácter y cercanía, lo que le permite estar siempre pendiente de cada comensal. No son un restaurante, son la familia que cocina en su casa y te abre la puerta.
+                </p>
+
+            </div>
+            <div class="nosotros__visual">
+                <div class="nosotros__image-frame">
+                    <img src="fondos/fotopedro.png" alt="Pedro y familia" class="nosotros__image">
+                </div>
+                <p class="nosotros__cita">
+                    "Siempre una sonrisa, siempre pendientes de que cada cliente esté más feliz que una perdiz."
+                    <span class="nosotros__cita-autor">— David de Jorge (Robin Food)</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SARMIENTO -->
+    <section class="sarmiento" id="sarmiento">
+        <div class="sarmiento__container">
+            <span class="section-label section-label--light">La técnica</span>
+            <h2 class="sarmiento__title">El <img src="fondos/sarmiento.png" alt="sarmiento" class="sarmiento__title-img"></h2>
+            <p class="sarmiento__intro">
+                La rama seca de la vid riojana. El mismo ciclo que da el vino que bebes, da el fuego que cocina tu carne.
+            </p>
+            <div class="sarmiento__grid">
+                <div class="sarmiento__card">
+                    <div class="sarmiento__card-number">01</div>
+                    <h3 class="sarmiento__card-title">La vid</h3>
+                    <p class="sarmiento__card-desc">Cada invierno se podan las viñas de La Rioja Alta. Las ramas secas — los sarmientos — se recogen para la brasa.</p>
+                </div>
+                <div class="sarmiento__card">
+                    <div class="sarmiento__card-number">02</div>
+                    <h3 class="sarmiento__card-title">El fuego</h3>
+                    <p class="sarmiento__card-desc">Arde rápido y limpio. Imprime un aroma sutil, terroso, que no se consigue con carbón ni con leña convencional.</p>
+                </div>
+                <div class="sarmiento__card">
+                    <div class="sarmiento__card-number">03</div>
+                    <h3 class="sarmiento__card-title">La mano</h3>
+                    <p class="sarmiento__card-desc">No hay termómetros, no hay recetas escritas. Es el ojo y la mano de quien controla el fuego. Décadas de oficio.</p>
+                </div>
+        </div>
+    </section>
+
+    <!-- FRASE 2 -->
+    <section class="frase frase--alt">
+        <div class="frase__container">
+            <blockquote class="frase__text frase__text--small">
+                Otros restaurantes presumen de tener cien platos.<br>
+                Nosotros presumimos de hacer seis como nadie.
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- CARTA -->
+    <section class="carta" id="carta">
+        <div class="carta__container">
+            <div class="carta__header">
+                <span class="section-label">Lo que hacemos</span>
+                <h2 class="carta__title">La carta</h2>
+                <p class="carta__intro">Carta reducida por convicción, no por limitación.</p>
+            </div>
+            <div class="carta__grid">
+                <!-- ENTRANTES -->
+                <h3 class="carta__categoria">Entrantes</h3>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Ensalada <span class="carta__plato-nota">(2 personas)</span></h4>
+                        <span class="carta__plato-precio">7,00€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Espárragos</h4>
+                        <span class="carta__plato-precio">20,00€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Ensalada mixta</h4>
+                        <span class="carta__plato-precio">15,00€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Jamón Ibérico</h4>
+                        <span class="carta__plato-precio">20,00€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Queso <span class="carta__plato-nota">(1 ración/pers.)</span></h4>
+                        <span class="carta__plato-precio">10,00€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Patatas Riojanas <span class="carta__plato-nota">(1 ración, por encargo)</span></h4>
+                        <span class="carta__plato-precio">8,00€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Servicio de pan <span class="carta__plato-nota">(1 pers.)</span></h4>
+                        <span class="carta__plato-precio">1,50€</span>
+                    </div>
+                </div>
+
+                <!-- PRINCIPALES -->
+                <h3 class="carta__categoria">Principales</h3>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Morcilla</h4>
+                        <span class="carta__plato-precio">7,50€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Chorizo <span class="carta__plato-nota">(media ración)</span></h4>
+                        <span class="carta__plato-precio">7,50€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Pimientos</h4>
+                        <span class="carta__plato-precio">7,00€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Chuletillas <span class="carta__plato-nota">(1 ración/pers.) 4 unidades</span></h4>
+                        <span class="carta__plato-precio">15,00€</span>
+                    </div>
+                    <span class="carta__plato-tag">Insignia</span>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Tortillas</h4>
+                        <span class="carta__plato-precio">8,00€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Tortillas con jamón</h4>
+                        <span class="carta__plato-precio">10,00€</span>
+                    </div>
+                </div>
+
+                <!-- POSTRES -->
+                <h3 class="carta__categoria">Postres</h3>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Canutillos rellenos de crema</h4>
+                        <span class="carta__plato-precio">5,50€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Hojaldre de crema</h4>
+                        <span class="carta__plato-precio">5,50€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Arroz con leche</h4>
+                        <span class="carta__plato-precio">5,50€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Flan</h4>
+                        <span class="carta__plato-precio">5,50€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Cuajada</h4>
+                        <span class="carta__plato-precio">4,00€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Queso con membrillo</h4>
+                        <span class="carta__plato-precio">8,00€</span>
+                    </div>
+                </div>
+                <div class="carta__plato">
+                    <div class="carta__plato-line"></div>
+                    <div class="carta__plato-row">
+                        <h4 class="carta__plato-nombre">Tarta helada</h4>
+                        <span class="carta__plato-precio">4,00€</span>
+                    </div>
+                </div>
+            </div>
+            <details class="carta__vinos-toggle">
+                <summary class="carta__vinos-summary">Ver carta de vinos</summary>
+                <div class="carta__vinos">
+                    <!-- MAGNUMS -->
+                    <h3 class="carta__categoria">Magnums</h3>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Sierra Cantabria Crianza</h4>
+                            <span class="carta__plato-precio">23,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Sierra Cantabria Reserva</h4>
+                            <span class="carta__plato-precio">41,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Viña Alberdi</h4>
+                            <span class="carta__plato-precio">28,00€</span>
+                        </div>
+                    </div>
+
+                    <!-- CRIANZAS -->
+                    <h3 class="carta__categoria">Crianzas</h3>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Beronia</h4>
+                            <span class="carta__plato-precio">12,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Caecus</h4>
+                            <span class="carta__plato-precio">14,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Cubillo</h4>
+                            <span class="carta__plato-precio">16,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Erídano</h4>
+                            <span class="carta__plato-precio">12,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Martínez Lacuesta</h4>
+                            <span class="carta__plato-precio">14,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Muga</h4>
+                            <span class="carta__plato-precio">19,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Pierola</h4>
+                            <span class="carta__plato-precio">14,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Sierra Cantabria</h4>
+                            <span class="carta__plato-precio">14,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Tarón</h4>
+                            <span class="carta__plato-precio">10,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Tobelos</h4>
+                            <span class="carta__plato-precio">14,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Viña Alberdi</h4>
+                            <span class="carta__plato-precio">12,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Viña Olartia</h4>
+                            <span class="carta__plato-precio">15,00€</span>
+                        </div>
+                    </div>
+                    <div class="carta__plato">
+                        <div class="carta__plato-line"></div>
+                        <div class="carta__plato-row">
+                            <h4 class="carta__plato-nombre">Viña Real</h4>
+                            <span class="carta__plato-precio">15,00€</span>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- BODEGA -->
+    <section class="bodega" id="bodega">
+        <div class="bodega__container">
+            <div class="bodega__visual">
+                <div class="bodega__image-frame">
+                    <img src="fondos/espacio.jpg" alt="Interior de la bodega" class="bodega__image">
+                </div>
+            </div>
+            <div class="bodega__text">
+                <span class="section-label">El espacio</span>
+                <h2 class="bodega__title">Una bodega<br>del siglo XVIII</h2>
+                <p class="bodega__desc">
+                    No es un restaurante decorado para parecer antiguo. Es una bodega centenaria que funciona como asador desde hace décadas. Los muros de piedra, la chimenea, los bancos de madera, la barra con los lugareños — todo es genuino.
+                </p>
+                <div class="bodega__espacios">
+                    <div class="bodega__espacio">
+                        <span class="bodega__espacio-nombre">Comedor interior</span>
+                        <span class="bodega__espacio-detalle">Piedra, madera, chimenea</span>
+                    </div>
+                    <div class="bodega__espacio">
+                        <span class="bodega__espacio-nombre">Terraza acristalada</span>
+                        <span class="bodega__espacio-detalle">Luz natural, vistas</span>
+                    </div>
+                    <div class="bodega__espacio">
+                        <span class="bodega__espacio-nombre">Terraza de verano</span>
+                        <span class="bodega__espacio-detalle">Junto al río, entre viñedos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contacto" id="reservar">
+        <div class="contacto__container">
+            <div class="contacto__info">
+                <span class="section-label">Ven a vernos</span>
+                <h2 class="contacto__title">Reservar mesa</h2>
+                <p class="contacto__nota">Imprescindible reservar los fines de semana.</p>
+                <div class="contacto__datos">
+                    <a href="tel:+34941301777" class="contacto__dato contacto__dato--phone">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                        </svg>
+                        <span>941 301 777</span>
+                    </a>
+                    <a href="mailto:bodegaelpimiento@gmail.com" class="contacto__dato">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="M22 7l-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/>
+                        </svg>
+                        <span>bodegaelpimiento@gmail.com</span>
+                    </a>
+                    <div class="contacto__dato">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span>Calle Salvador, 8<br>26211 Tirgo, La Rioja</span>
+                    </div>
+                    <div class="contacto__dato">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        <span>Cerrado los lunes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contacto__mapa">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.8!2d-2.8747!3d42.5808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4fb2c3e1e3e1e3%3A0x0!2sCalle+Salvador+8+Tirgo+La+Rioja!5e0!3m2!1ses!2ses!4v1"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Ubicación de Bodega Pimiento en Tirgo, La Rioja">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__brand">
+                <img src="logo.png" alt="Bodega Pimiento" class="footer__logo">
+                <span class="footer__name">Bodega Pimiento</span>
+            </div>
+            <div class="footer__meta">
+                <span>Calle Salvador, 8 — 26211 Tirgo, La Rioja</span>
+                <span>941 301 777</span>
+            </div>
+            <div class="footer__bottom">
+                <span>Asador familiar en La Rioja Alta desde hace décadas.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

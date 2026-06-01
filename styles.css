@@ -1,0 +1,1253 @@
+/* ============================================
+   BODEGA PIMIENTO — Custom Design System
+
+   Palette:
+   --bg-deep:     #0f0c08  (bodega darkness)
+   --bg-dark:     #1a1410  (warm black)
+   --bg-warm:     #231c14  (dark wood)
+   --surface:     #2a2118  (stone wall)
+   --gold:        #c9a96e  (sarmiento fire)
+   --gold-light:  #dbc496  (ember glow)
+   --gold-dim:    #8a7a5a  (aged gold)
+   --terracotta:  #8b3a2a  (pimiento red)
+   --terra-light: #a94e3c  (warm red)
+   --cream:       #f5efe6  (aged paper)
+   --cream-mid:   #d4c8b8  (stone light)
+   --cream-dim:   #9a8e80  (worn stone)
+   --stone:       #6b6056  (gray warm)
+
+   Typography:
+   --font-display: 'Playfair Display', Georgia, serif
+   --font-body:    'Karla', -apple-system, sans-serif
+   ============================================ */
+
+:root {
+    --bg-deep: #0f0c08;
+    --bg-dark: #1a1410;
+    --bg-warm: #231c14;
+    --surface: #2a2118;
+    --gold: #c9a96e;
+    --gold-light: #dbc496;
+    --gold-dim: #8a7a5a;
+    --terracotta: #8b3a2a;
+    --terra-light: #a94e3c;
+    --cream: #f5efe6;
+    --cream-mid: #d4c8b8;
+    --cream-dim: #9a8e80;
+    --stone: #6b6056;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Karla', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-deep);
+    color: var(--cream);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: var(--terracotta);
+    color: var(--cream);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* ============================================
+   SECTION LABEL (reusable)
+   ============================================ */
+
+.section-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+}
+
+.section-label--light {
+    color: var(--gold-light);
+}
+
+/* ============================================
+   NAV
+   ============================================ */
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+.nav--scrolled {
+    background-color: rgba(15, 12, 8, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.nav__left {
+    flex: 1;
+}
+
+.nav__location {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    font-weight: 400;
+}
+
+.nav__center {
+    flex: 0 0 auto;
+}
+
+.nav__logo-link {
+    display: block;
+}
+
+.nav__logo {
+    height: 36px;
+    width: auto;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    filter: brightness(1.3) saturate(1.4) drop-shadow(0 0 6px rgba(139, 58, 42, 0.4));
+}
+
+.nav--scrolled .nav__logo {
+    opacity: 1;
+}
+
+.nav__right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2rem;
+}
+
+.nav__phone {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--cream-mid);
+    transition: color 0.3s ease;
+}
+
+.nav__phone:hover {
+    color: var(--cream);
+}
+
+.nav__reserva {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 0.6rem 1.5rem;
+    border: 1px solid var(--gold-dim);
+    transition: all 0.3s ease;
+}
+
+.nav__reserva:hover {
+    background-color: var(--gold);
+    color: var(--bg-deep);
+    border-color: var(--gold);
+}
+
+.nav__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 110;
+}
+
+.nav__toggle span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--cream);
+    transition: all 0.3s ease;
+}
+
+.nav__toggle--open span:first-child {
+    transform: rotate(45deg) translate(3px, 3px);
+}
+
+.nav__toggle--open span:last-child {
+    transform: rotate(-45deg) translate(3px, -3px);
+}
+
+/* ============================================
+   MOBILE MENU
+   ============================================ */
+
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 105;
+    background: var(--bg-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.mobile-menu--open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.mobile-menu__inner {
+    text-align: center;
+}
+
+.mobile-menu__link {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.mobile-menu__link:hover {
+    color: var(--gold);
+}
+
+.mobile-menu__contact {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--cream-dim);
+}
+
+.mobile-menu__contact a {
+    color: var(--gold);
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--bg-deep);
+}
+
+.hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(180deg, rgba(15, 12, 8, 0.5) 0%, rgba(15, 12, 8, 0.3) 30%, rgba(15, 12, 8, 0.3) 60%, rgba(15, 12, 8, 0.85) 100%);
+}
+
+.hero__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero__logo-wrapper {
+    margin-bottom: 2rem;
+}
+
+.hero__logo {
+    height: 80px;
+    width: auto;
+    margin: 0 auto;
+    filter: brightness(1.3) saturate(1.4) drop-shadow(0 0 8px rgba(139, 58, 42, 0.5));
+    opacity: 1;
+}
+
+.hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+}
+
+.hero__subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--cream-mid);
+    letter-spacing: 0.04em;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.hero__scroll-hint {
+    position: absolute;
+    bottom: -8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--cream-dim);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ============================================
+   FRASE
+   ============================================ */
+
+.frase {
+    padding: 6rem 2rem;
+    background: var(--bg-dark);
+    border-top: 1px solid rgba(201, 169, 110, 0.1);
+    border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+}
+
+.frase--alt {
+    background: var(--bg-warm);
+}
+
+.frase__container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.frase__text {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--cream);
+    font-style: normal;
+}
+
+.frase__text em {
+    color: var(--gold);
+    font-style: italic;
+}
+
+.frase__text--small {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    color: var(--cream-mid);
+}
+
+/* ============================================
+   NOSOTROS
+   ============================================ */
+
+.nosotros {
+    padding: 8rem 2rem;
+    background: var(--bg-deep);
+}
+
+.nosotros__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+}
+
+.nosotros__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 2rem;
+}
+
+.nosotros__desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--cream-mid);
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+}
+
+.nosotros__cita {
+    margin-top: 2rem;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--gold-dim);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--cream-mid);
+}
+
+.nosotros__cita-autor {
+    display: block;
+    margin-top: 0.75rem;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--gold-dim);
+}
+
+.nosotros__image-frame {
+    background: var(--bg-warm);
+    border: 1px solid rgba(201, 169, 110, 0.15);
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.nosotros__image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.nosotros__image-placeholder {
+    text-align: center;
+    color: var(--stone);
+}
+
+.nosotros__icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    color: var(--stone);
+}
+
+.nosotros__image-placeholder span {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.nosotros__detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+}
+
+.nosotros__detail-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+}
+
+.nosotros__detail-value {
+    font-size: 0.85rem;
+    color: var(--cream-mid);
+    text-align: right;
+}
+
+/* ============================================
+   SARMIENTO
+   ============================================ */
+
+.sarmiento {
+    padding: 8rem 2rem;
+    background: var(--bg-dark);
+    position: relative;
+}
+
+.sarmiento::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse 50% 50% at 50% 100%, rgba(139, 58, 42, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.sarmiento__container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sarmiento__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.sarmiento__title-img {
+    height: 1.6em;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+    object-fit: contain;
+}
+
+.sarmiento__intro {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--cream-mid);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+}
+
+.sarmiento__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.sarmiento__card {
+    text-align: left;
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(201, 169, 110, 0.12);
+    background: rgba(26, 20, 16, 0.5);
+    transition: border-color 0.3s ease;
+}
+
+.sarmiento__card:hover {
+    border-color: rgba(201, 169, 110, 0.3);
+}
+
+.sarmiento__card-number {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--gold-dim);
+    margin-bottom: 1.5rem;
+}
+
+.sarmiento__card-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 1rem;
+}
+
+.sarmiento__card-desc {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--cream-dim);
+    font-weight: 300;
+}
+
+.sarmiento__ciclo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.sarmiento__ciclo svg {
+    color: var(--gold-dim);
+    flex-shrink: 0;
+}
+
+/* ============================================
+   CARTA
+   ============================================ */
+
+.carta {
+    padding: 8rem 2rem;
+    background: var(--bg-deep);
+}
+
+.carta__container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.carta__header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.carta__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 1rem;
+}
+
+.carta__intro {
+    font-size: 0.95rem;
+    color: var(--cream-dim);
+    font-weight: 300;
+    font-style: italic;
+}
+
+.carta__grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.carta__plato {
+    padding: 1.25rem 0;
+    position: relative;
+}
+
+.carta__plato-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.2), transparent);
+}
+
+.carta__categoria {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+}
+
+.carta__categoria:first-child {
+    margin-top: 0;
+}
+
+.carta__plato-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.carta__plato-nombre {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin: 0;
+}
+
+.carta__plato-nota {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--cream-dim);
+}
+
+.carta__plato-precio {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--cream-mid);
+    font-weight: 400;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.carta__plato-desc {
+    font-size: 0.9rem;
+    color: var(--cream-dim);
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.carta__plato-tag {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    border: 1px solid var(--terracotta);
+    padding: 0.2rem 0.6rem;
+}
+
+.carta__vinos-toggle {
+    margin-top: 4rem;
+    padding: 4rem 1.5rem;
+    position: relative;
+    background-image: 
+        linear-gradient(to bottom, var(--bg-deep) 0%, rgba(10, 8, 6, 0.85) 15%, rgba(10, 8, 6, 0.85) 85%, var(--bg-deep) 100%),
+        radial-gradient(circle at center, transparent 0%, var(--bg-deep) 100%),
+        url('fondos/vino_fondo.png');
+    background-size: cover;
+    background-position: center;
+    border: none;
+}
+
+.carta__vinos-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 0.8rem 2rem;
+    background-color: rgba(10, 8, 6, 0.6);
+    border: 1px solid var(--gold-dim);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    list-style: none;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.carta__vinos-summary::-webkit-details-marker {
+    display: none;
+}
+
+.carta__vinos-summary::after {
+    content: '+';
+    font-size: 1.1rem;
+    font-weight: 300;
+    transition: transform 0.3s ease;
+}
+
+.carta__vinos-toggle[open] .carta__vinos-summary::after {
+    content: '−';
+}
+
+.carta__vinos-summary:hover {
+    background-color: rgba(139, 58, 42, 0.8); /* Terracotta / garnet */
+    color: var(--cream);
+    border-color: rgba(139, 58, 42, 1);
+}
+
+.carta__vinos {
+    margin-top: 1.5rem;
+}
+
+/* ============================================
+   BODEGA
+   ============================================ */
+
+.bodega {
+    padding: 8rem 2rem;
+    background: var(--bg-warm);
+}
+
+.bodega__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+.bodega__image-frame {
+    aspect-ratio: 4 / 3;
+    background: var(--bg-dark);
+    border: 1px solid rgba(201, 169, 110, 0.12);
+    overflow: hidden;
+}
+
+.bodega__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+}
+
+.bodega__image-placeholder {
+    text-align: center;
+    color: var(--stone);
+}
+
+.bodega__icon {
+    width: 80px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    color: var(--stone);
+}
+
+.bodega__image-placeholder span {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.bodega__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+}
+
+.bodega__desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--cream-mid);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+}
+
+.bodega__espacios {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.bodega__espacio {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+}
+
+.bodega__espacio-nombre {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--cream);
+}
+
+.bodega__espacio-detalle {
+    font-size: 0.8rem;
+    color: var(--cream-dim);
+    font-weight: 300;
+}
+
+.bodega__capacidad {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--gold);
+}
+
+/* ============================================
+   CONTACTO
+   ============================================ */
+
+.contacto {
+    padding: 8rem 2rem;
+    background: var(--bg-dark);
+}
+
+.contacto__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.contacto__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+}
+
+.contacto__nota {
+    font-size: 0.9rem;
+    color: var(--cream-dim);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+}
+
+.contacto__datos {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contacto__dato {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    color: var(--cream-mid);
+    font-size: 0.9rem;
+    font-weight: 300;
+    transition: color 0.3s ease;
+}
+
+.contacto__dato svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--gold-dim);
+}
+
+a.contacto__dato:hover {
+    color: var(--gold);
+}
+
+a.contacto__dato:hover svg {
+    color: var(--gold);
+}
+
+.contacto__dato--phone span {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--cream);
+}
+
+.contacto__mapa {
+    background: var(--bg-deep);
+    overflow: hidden;
+    position: relative;
+    min-height: 400px;
+}
+
+.contacto__mapa iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: grayscale(100%);
+}
+
+.contacto__mapa-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.contacto__mapa-svg {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+}
+
+.contacto__mapa-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-mid);
+    padding: 0.7rem 1.8rem;
+    border: 1px solid var(--stone);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.contacto__mapa-link:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+    padding: 3rem 2rem;
+    background: var(--bg-deep);
+    border-top: 1px solid rgba(201, 169, 110, 0.08);
+}
+
+.footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer__logo {
+    height: 28px;
+    width: auto;
+    filter: brightness(1.1) saturate(1.2);
+    opacity: 0.7;
+}
+
+.footer__name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--cream-dim);
+}
+
+.footer__meta {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.75rem;
+    color: var(--stone);
+    letter-spacing: 0.05em;
+}
+
+.footer__bottom {
+    font-size: 0.75rem;
+    color: var(--stone);
+    margin-top: 0.5rem;
+}
+
+/* ============================================
+   EFECTO CENIZAS
+   ============================================ */
+
+#ash-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999; /* Max z-index to guarantee visibility */
+    overflow: hidden;
+}
+
+.ash {
+    position: absolute;
+    bottom: -5vh;
+    background-color: #ffb732; /* Bright ember color */
+    box-shadow: 0 0 6px #ff7b00, 0 0 12px #ff4500;
+    opacity: 0;
+}
+
+
+
+/* ============================================
+   ANIMATIONS (scroll reveal)
+   ============================================ */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .nosotros__container,
+    .bodega__container,
+    .contacto__container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .bodega__container {
+        direction: ltr;
+    }
+
+    .bodega__visual {
+        order: -1;
+    }
+
+    .sarmiento__grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        padding: 1rem 1.5rem;
+    }
+
+    .nav__left,
+    .nav__right {
+        display: none;
+    }
+
+    .nav__logo {
+        opacity: 1;
+    }
+
+    .nav__toggle {
+        display: flex;
+    }
+
+    .hero {
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    .hero__logo {
+        height: 56px;
+    }
+
+    .hero__scroll-hint {
+        bottom: -6rem;
+    }
+
+    .frase {
+        padding: 4rem 1.5rem;
+    }
+
+    .nosotros,
+    .sarmiento,
+    .carta,
+    .bodega,
+    .ritual,
+    .contacto {
+        padding: 5rem 1.5rem;
+    }
+
+    .nosotros__container,
+    .bodega__container,
+    .contacto__container {
+        gap: 2.5rem;
+    }
+
+    .sarmiento__ciclo {
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+    }
+
+    .contacto__mapa-inner {
+        min-height: 300px;
+    }
+
+    .footer__meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero__title {
+        font-size: 3rem;
+    }
+
+    .nosotros__detail {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .nosotros__detail-value {
+        text-align: left;
+    }
+
+    .bodega__espacio {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .hero__scroll-hint {
+        animation: none;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .ritual__step {
+        opacity: 1;
+        transition: none;
+    }
+}
