@@ -345,7 +345,7 @@ a {
     object-fit: cover;
     z-index: 0;
     opacity: 0;
-    animation: videoFadeIn 5s cubic-bezier(0.23, 1, 0.32, 1) 1.7s both;
+    animation: videoFadeIn 1500ms cubic-bezier(0.23, 1, 0.32, 1) 600ms both;
 }
 
 @keyframes videoFadeIn {
@@ -1300,22 +1300,22 @@ a.contacto__dato:active {
 
 .hero__title {
     opacity: 0;
-    animation: simpleFadeIn 2500ms cubic-bezier(0.23, 1, 0.32, 1) 200ms both;
+    animation: simpleFadeIn 1000ms cubic-bezier(0.23, 1, 0.32, 1) 200ms both;
 }
 .hero__subtitle {
     opacity: 0;
-    animation: simpleFadeIn 2500ms cubic-bezier(0.23, 1, 0.32, 1) 1200ms both;
+    animation: simpleFadeIn 1000ms cubic-bezier(0.23, 1, 0.32, 1) 400ms both;
 }
 .hero__logo-wrapper {
     opacity: 0;
-    animation: simpleFadeIn 2500ms ease-out 2700ms both;
+    animation: simpleFadeIn 1000ms ease-out 1200ms both;
 }
 .hero__scroll-hints {
     opacity: 0;
-    animation: simpleFadeIn 2000ms ease-out 4200ms both;
+    animation: simpleFadeIn 1000ms ease-out 2200ms both;
 }
 .nav {
-    animation: simpleFadeIn 2000ms ease-out 4200ms both;
+    animation: simpleFadeIn 1000ms ease-out 2200ms both;
 }
 
 @keyframes heroFadeUp {
