@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
+    
+    // Initialize Lenis Smooth Scroll
+    var lenis;
+    if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+            autoRaf: true,
+            duration: 1.2,
+            smoothWheel: true,
+            wheelMultiplier: 1
+        });
+    }
 
     // Force video autoplay
     var heroVideo = document.querySelector('.hero__video');
@@ -281,24 +292,29 @@ document.addEventListener('DOMContentLoaded', function () {
             if (target) {
                 e.preventDefault();
                 var offset = nav ? nav.offsetHeight : 0;
-                var targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
-                var startPosition = window.scrollY;
-                var distance = targetPosition - startPosition;
-                var duration = 800;
-                var start = null;
+                
+                if (lenis) {
+                    lenis.scrollTo(target, { offset: -offset, duration: 1.5 });
+                } else {
+                    // Fallback smooth scroll
+                    var targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+                    var startPosition = window.scrollY;
+                    var distance = targetPosition - startPosition;
+                    var duration = 800;
+                    var start = null;
 
-                function step(timestamp) {
-                    if (!start) start = timestamp;
-                    var progress = timestamp - start;
-                    var t = Math.min(progress / duration, 1);
-                    // easeInOutCubic
-                    var ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                    window.scrollTo(0, startPosition + distance * ease);
-                    if (progress < duration) {
-                        window.requestAnimationFrame(step);
+                    function step(timestamp) {
+                        if (!start) start = timestamp;
+                        var progress = timestamp - start;
+                        var t = Math.min(progress / duration, 1);
+                        var ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                        window.scrollTo(0, startPosition + distance * ease);
+                        if (progress < duration) {
+                            window.requestAnimationFrame(step);
+                        }
                     }
+                    window.requestAnimationFrame(step);
                 }
-                window.requestAnimationFrame(step);
             }
         });
     });
