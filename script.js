@@ -4,13 +4,18 @@ document.addEventListener('DOMContentLoaded', function () {
     var lenis;
     if (typeof Lenis !== 'undefined') {
         lenis = new Lenis({
-            autoRaf: true,
             duration: 1.2,
             smoothWheel: true,
             wheelMultiplier: 1,
             syncTouch: true,
             touchMultiplier: 2
         });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
     }
 
     // Force video autoplay
